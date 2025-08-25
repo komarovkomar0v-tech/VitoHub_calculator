@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Калькулятор оптимизации</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<h1>Калькулятор оптимизации</h1>
+
+<div class="input-group">
+    <label for="views">Просмотры (Views):</label>
+    <input type="number" id="views" placeholder="Введите количество просмотров" />
+</div>
+
+<div class="input-group">
+    <label for="ctr">CTR (%):</label>
+    <input type="number" id="ctr" placeholder="Введите CTR в %" />
+</div>
+
+<div class="input-group">
+    <label for="leads">Заявки (Leads):</label>
+    <input type="number" id="leads" placeholder="Введите количество заявок" />
+</div>
+
+<div class="input-group">
+    <label for="salePrice">Цена за продажу (₽):</label>
+    <input type="number" id="salePrice" placeholder="Введите цену за продажу" />
+</div>
+
+<button onclick="calculate()">Рассчитать</button>
+
+<div id="result-container">
+    <div id="potentialResult"></div>
+</div>
+
+<script>
+function calculate() {
+    // Получаем значения из полей
+    const views = parseFloat(document.getElementById('views').value) || 0;
+    const ctr = parseFloat(document.getElementById('ctr').value) || 0;
+    const leads = parseFloat(document.getElementById('leads').value) || 0;
+    const salePrice = parseFloat(document.getElementById('salePrice').value) || 0;
+
+    // Расчет текущего количества кликов
+    const currentClicks = views * (ctr / 100);
+    // Расчет текущей конверсии в заявки (процент)
+    const currentConversion = currentClicks > 0 ? (leads / currentClicks) * 100 : 0;
+
+    // Предположим увеличение CTR в 2 раза
+    const newCTR = ctr * 2;
+    // Улучшение конверсии в заявки на 50%
+    const newConversion = currentConversion * 1.5;
+
+    // Расчет новых кликов и заявок после оптимизации
+    const newClicks = views * (newCTR / 100);
+    const newLeads = newClicks * (newConversion / 100);
+    // Дополнительные заявки в день
+    const additionalLeadsPerDay = newLeads - leads;
+
+    // Расчет дополнительной прибыли за месяц (30 дней)
+    const additionalProfitMonth = additionalLeadsPerDay * salePrice * 30;
+
+    // Вывод результатов
+    document.getElementById('potentialResult').innerHTML = `
+        <strong>При оптимизации:</strong><br>
+        - CTR: <b>${ctr}% → ${newCTR.toFixed(1)}%</b><br>
+        - Конверсия в заявки: <b>${currentConversion.toFixed(1)}% → ${newConversion.toFixed(1)}%</b><br>
+        - Дополнительных заявок в день: <b>+${additionalLeadsPerDay.toFixed(1)}</b><br>
+        - Дополнительная прибыль в месяц: <b>~${additionalProfitMonth.toFixed(0)} ₽</b><br><br>
+        <small>Расчет примерный. Точные цифры зависят от множества факторов.</small>
+    `;
+    
+    document.getElementById('result-container').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
