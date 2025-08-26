@@ -5,121 +5,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ROI Калькулятор | Ваше Агентство</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="my-logo.svg" type="image/svg+xml">
+    <link rel="icon" href="logo.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Профессиональный калькулятор ROI для анализа эффективности рекламы">
 </head>
 <body>
     <div class="app-container">
         <header class="app-header">
-            <div class="logo-container">
-                <img src="my-logo.svg" alt="Логотип Вашего Агентства" class="main-logo">
-                <h1 class="app-title">PRO ROI Calculator</h1>
+            <div class="brand-identity">
+                <picture>
+                    <source srcset="logo.svg" type="image/svg+xml">
+                    <img src="logo.png" alt="Логотип Вашего Агентства" 
+                         class="brand-logo" 
+                         width="250" height="90"
+                         loading="eager">
+                </picture>
+                <div class="brand-titles">
+                    <h1 class="app-title">ROI Calculator PRO</h1>
+                    <p class="app-subtitle">Анализ эффективности рекламных кампаний</p>
+                </div>
             </div>
-            <p class="app-subtitle">Точный расчет эффективности ваших объявлений</p>
         </header>
 
         <main class="app-content">
-            <div class="input-section">
-                <div class="input-group">
-                    <label for="views">Показов в день</label>
-                    <input type="number" id="views" placeholder="1000" min="0">
-                    <span class="input-hint">Среднее количество</span>
-                </div>
+            <section class="input-section">
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="views">Показов в день</label>
+                        <input type="number" id="views" placeholder="1000" min="0">
+                        <span class="input-hint">Среднее количество просмотров</span>
+                    </div>
 
-                <div class="input-group">
-                    <label for="ctr">Текущий CTR (%)</label>
-                    <input type="number" id="ctr" placeholder="2.5" step="0.1" min="0" max="100">
-                </div>
+                    <div class="input-group">
+                        <label for="ctr">Текущий CTR (%)</label>
+                        <input type="number" id="ctr" placeholder="2.5" step="0.1" min="0" max="100">
+                    </div>
 
-                <div class="input-group">
-                    <label for="conversion">Конверсия (%)</label>
-                    <input type="number" id="conversion" placeholder="15" step="0.1" min="0" max="100">
-                </div>
+                    <div class="input-group">
+                        <label for="conversion">Конверсия (%)</label>
+                        <input type="number" id="conversion" placeholder="15" step="0.1" min="0" max="100">
+                    </div>
 
-                <div class="input-group">
-                    <label for="price">Средний чек (₽)</label>
-                    <input type="number" id="price" placeholder="50000" min="0">
-                </div>
-
-                <button class="calculate-btn" id="calculate-btn">Рассчитать потенциал</button>
-            </div>
-
-            <div class="result-section" id="result-section">
-                <div class="result-header">
-                    <h2>Ваш потенциал</h2>
-                    <div class="result-actions">
-                        <button class="share-btn" id="share-btn">Поделиться</button>
+                    <div class="input-group">
+                        <label for="price">Средний чек (₽)</label>
+                        <input type="number" id="price" placeholder="50000" min="0">
                     </div>
                 </div>
 
-                <div class="result-grid">
-                    <div class="result-card">
+                <button class="calculate-btn" id="calculate-btn">
+                    <span>Рассчитать потенциал</span>
+                    <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </button>
+            </section>
+
+            <section class="result-section" id="result-section">
+                <div class="result-header">
+                    <h2>Результаты анализа</h2>
+                    <div class="result-actions">
+                        <button class="action-btn" id="share-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <path d="M18 8C19.6569 8 21 6.65685 21 5C21 3.34315 19.6569 2 18 2C16.3431 2 15 3.34315 15 5C15 6.65685 16.3431 8 18 8Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M6 15C7.65685 15 9 13.6569 9 12C9 10.3431 7.65685 9 6 9C4.34315 9 3 10.3431 3 12C3 13.6569 4.34315 15 6 15Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M18 22C19.6569 22 21 20.6569 21 19C21 17.3431 19.6569 16 18 16C16.3431 16 15 17.3431 15 19C15 20.6569 16.3431 22 18 22Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M8.58984 13.51L15.4198 17.49M15.4098 6.51L8.58984 10.49" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span>Поделиться</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="result-metrics">
+                    <div class="metric-card">
                         <span class="metric-name">Текущий CTR</span>
                         <span class="metric-value" id="current-ctr">0%</span>
                     </div>
-                    <div class="result-card improvement">
+                    <div class="metric-card highlight">
                         <span class="metric-name">Новый CTR</span>
                         <span class="metric-value" id="new-ctr">0%</span>
                     </div>
-                    <div class="result-card">
+                    <div class="metric-card">
                         <span class="metric-name">Текущая конверсия</span>
                         <span class="metric-value" id="current-conv">0%</span>
                     </div>
-                    <div class="result-card improvement">
+                    <div class="metric-card highlight">
                         <span class="metric-name">Новая конверсия</span>
                         <span class="metric-value" id="new-conv">0%</span>
                     </div>
                 </div>
 
-                <div class="final-result">
-                    <div class="final-metric">
+                <div class="final-results">
+                    <div class="result-row">
                         <span>Дополнительных заявок в день:</span>
                         <span class="highlight-value" id="additional-leads">0</span>
                     </div>
-                    <div class="final-metric">
+                    <div class="result-row">
                         <span>Дополнительная прибыль в месяц:</span>
                         <span class="highlight-value profit" id="total-profit">0 ₽</span>
                     </div>
                 </div>
-            </div>
+            </section>
         </main>
 
         <footer class="app-footer">
-            <div class="footer-branding">
-                <img src="my-logo.svg" alt="Логотип" class="footer-logo">
-                <span class="company-name">Ваше Агентство</span>
+            <div class="footer-content">
+                <div class="footer-branding">
+                    <picture>
+                        <source srcset="logo.svg" type="image/svg+xml">
+                        <img src="logo.png" alt="Логотип компании" class="footer-logo" width="150" height="55">
+                    </picture>
+                    <span class="company-name">Ваше Агентство © 2023</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Политика конфиденциальности</a>
+                    <a href="#">Условия использования</a>
+                </div>
             </div>
-            <p class="disclaimer">* Результаты являются прогнозными и могут отличаться</p>
         </footer>
     </div>
 
     <script>
-        document.getElementById('calculate-btn').addEventListener('click', function() {
-            const views = parseFloat(document.getElementById('views').value) || 0;
-            const ctr = parseFloat(document.getElementById('ctr').value) || 0;
-            const conversion = parseFloat(document.getElementById('conversion').value) || 0;
-            const price = parseFloat(document.getElementById('price').value) || 0;
+        document.addEventListener('DOMContentLoaded', function() {
+            const calculateBtn = document.getElementById('calculate-btn');
+            const resultSection = document.getElementById('result-section');
             
-            // Расчеты
-            const newCTR = ctr * 1.6;
-            const newConversion = conversion * 1.4;
-            const additionalLeads = (views * newCTR/100 * newConversion/100) - (views * ctr/100 * conversion/100);
-            const additionalProfit = additionalLeads * price * 30;
+            calculateBtn.addEventListener('click', function() {
+                // Получаем значения
+                const views = parseFloat(document.getElementById('views').value) || 0;
+                const ctr = parseFloat(document.getElementById('ctr').value) || 0;
+                const conversion = parseFloat(document.getElementById('conversion').value) || 0;
+                const price = parseFloat(document.getElementById('price').value) || 0;
+                
+                // Расчеты
+                const newCTR = ctr * 1.6;
+                const newConversion = conversion * 1.4;
+                const additionalLeads = (views * newCTR/100 * newConversion/100) - 
+                                       (views * ctr/100 * conversion/100);
+                const additionalProfit = additionalLeads * price * 30;
+                
+                // Обновляем UI
+                document.getElementById('current-ctr').textContent = ctr.toFixed(1) + '%';
+                document.getElementById('new-ctr').textContent = newCTR.toFixed(1) + '%';
+                document.getElementById('current-conv').textContent = conversion.toFixed(1) + '%';
+                document.getElementById('new-conv').textContent = newConversion.toFixed(1) + '%';
+                document.getElementById('additional-leads').textContent = additionalLeads.toFixed(1);
+                document.getElementById('total-profit').textContent = 
+                    new Intl.NumberFormat('ru-RU').format(Math.round(additionalProfit)) + ' ₽';
+                
+                // Показываем результаты с анимацией
+                resultSection.style.display = 'block';
+                resultSection.style.animation = 'fadeIn 0.5s ease-out';
+            });
             
-            // Обновление UI
-            document.getElementById('current-ctr').textContent = ctr.toFixed(1) + '%';
-            document.getElementById('new-ctr').textContent = newCTR.toFixed(1) + '%';
-            document.getElementById('current-conv').textContent = conversion.toFixed(1) + '%';
-            document.getElementById('new-conv').textContent = newConversion.toFixed(1) + '%';
-            document.getElementById('additional-leads').textContent = additionalLeads.toFixed(1);
-            document.getElementById('total-profit').textContent = 
-                new Intl.NumberFormat('ru-RU').format(Math.round(additionalProfit)) + ' ₽';
-            
-            // Показываем результаты
-            document.getElementById('result-section').style.display = 'block';
-        });
-
-        document.getElementById('share-btn').addEventListener('click', function() {
-            alert('Функция "Поделиться" будет реализована в следующей версии');
+            // Имитация функции "Поделиться"
+            document.getElementById('share-btn').addEventListener('click', function() {
+                alert('Функция "Поделиться" будет доступна в следующем обновлении');
+            });
         });
     </script>
 </body>
