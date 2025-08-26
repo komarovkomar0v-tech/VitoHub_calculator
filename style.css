@@ -202,25 +202,6 @@ body {
     color: var(--primary);
 }
 
-.action-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
-    padding: var(--space-xs) var(--space-sm);
-    background: none;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    font-size: 0.875rem;
-    color: var(--text-light);
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.action-btn:hover {
-    background-color: var(--surface);
-    color: var(--primary);
-}
-
 .result-metrics {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -275,6 +256,84 @@ body {
 
 .highlight-value.profit {
     color: var(--primary);
+}
+
+/* Telegram CTA Section */
+.tg-cta-section {
+    margin-top: 40px;
+    padding: 30px;
+    background: linear-gradient(135deg, rgba(42,123,200,0.08) 0%, rgba(0,215,176,0.08) 100%);
+    border-radius: var(--radius-md);
+    border: 1px dashed var(--primary);
+    text-align: center;
+}
+
+.tg-cta-content h3 {
+    font-size: 1.25rem;
+    color: var(--primary);
+    margin-bottom: 12px;
+}
+
+.tg-cta-content p {
+    color: var(--text-light);
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+}
+
+.tg-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background-color: #0088CC;
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+}
+
+.tg-cta-button:hover {
+    background-color: #0077B5;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.tg-cta-button:active {
+    transform: translateY(0);
+}
+
+.tg-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+/* Анимация для кнопки Telegram */
+@keyframes tg-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 136, 204, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 136, 204, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 136, 204, 0); }
+}
+
+.tg-cta-button {
+    animation: tg-pulse 2s infinite;
+}
+
+/* Иконка Telegram в кнопке */
+.tg-cta-button svg {
+    transition: transform 0.3s ease;
+}
+
+.tg-cta-button:hover svg {
+    transform: translateX(3px);
 }
 
 /* Подвал */
@@ -363,6 +422,15 @@ body {
     .final-results {
         background-color: rgba(42, 123, 200, 0.1);
     }
+    
+    .tg-cta-section {
+        background: linear-gradient(135deg, rgba(42,123,200,0.15) 0%, rgba(0,215,176,0.15) 100%);
+        border-color: var(--secondary);
+    }
+    
+    .tg-cta-button {
+        background-color: #0088CC;
+    }
 }
 
 /* Адаптивность */
@@ -394,5 +462,10 @@ body {
     
     .brand-logo {
         width: 200px;
+    }
+    
+    .tg-cta-button {
+        padding: 12px 20px;
+        font-size: 0.9rem;
     }
 }
