@@ -1,43 +1,158 @@
-body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  max-width: 600px;
-  margin: auto;
+:root {
+    --avito-blue: #2A7BC8;
+    --avito-green: #00D7B0;
+    --avito-red: #FF3D00;
+    --avito-gray: #F5F5F5;
 }
 
-h1 {
-  text-align: center;
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--avito-gray);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.calculator-container {
+    max-width: 600px;
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.calculator-header {
+    background-color: var(--avito-blue);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.calculator-header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.calculator-header p {
+    margin: 8px 0 0;
+    opacity: 0.9;
+    font-size: 14px;
+}
+
+.calculator-body {
+    padding: 25px;
 }
 
 .input-group {
-  margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
 }
 
-input[type=number] {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border 0.3s;
 }
 
-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  cursor: pointer;
+.input-group input:focus {
+    border-color: var(--avito-blue);
+    outline: none;
 }
 
-#result-container {
-  margin-top:20px;
+.calculate-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--avito-green);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
-#potentialResult {
-  background-color: #f4f4f4;
-  padding:15px;
-  border-radius:5px;
+.calculate-btn:hover {
+    background-color: #00C2A0;
+}
+
+.result-container {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #F9F9F9;
+    border-radius: 8px;
+    display: none;
+}
+
+.result-title {
+    color: var(--avito-blue);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.result-metric {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #eee;
+}
+
+.metric-name {
+    color: #666;
+}
+
+.metric-value {
+    font-weight: 600;
+}
+
+.improvement {
+    color: var(--avito-green);
+}
+
+.decline {
+    color: var(--avito-red);
+}
+
+.total-profit {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px solid var(--avito-blue);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--avito-blue);
+}
+
+.disclaimer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #999;
+    text-align: center;
+}
+
+.avito-logo {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.avito-logo span {
+    color: var(--avito-blue);
+    font-weight: 600;
+    font-size: 18px;
 }
